@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:peso/findjob.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -16,7 +18,7 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.grey.shade200,
+          color: Colors.white,
           height: size.height,
           width: size.width,
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -54,18 +56,26 @@ class _LandingPageState extends State<LandingPage> {
               ),
 
               Container(
-                height: size.height *.35,
+                height: size.height *.4,
                 margin: const EdgeInsets.only(top: 30),
                 child: Row(
                   children: [
                     Expanded(
                       child: GestureDetector(
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              child: const FindJobPage(),
+                              type: PageTransitionType.fade
+                            )
+                          );
+                        },
                         child: Container(
                           height: size.height *.35,
-                          decoration: const BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.all(Radius.circular(25))
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: const BorderRadius.all(Radius.circular(25))
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -74,11 +84,12 @@ class _LandingPageState extends State<LandingPage> {
                                 width: 100,
                                 height: 100,
                                 margin: const EdgeInsets.only(bottom: 20),
-                                decoration: const BoxDecoration(
-                                  color: Colors.amber,
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
                                   shape: BoxShape.circle,
-                                  // image: AssetImage("")
                                 ),
+                                child: Image.asset("assets/icons/job-seeker.png"),
                               ),
                               const Text("Find a job",
                                 style: TextStyle(
@@ -99,9 +110,9 @@ class _LandingPageState extends State<LandingPage> {
                         onTap: (){},
                         child: Container(
                           height: size.height *.35,
-                          decoration: const BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.all(Radius.circular(25))
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: const BorderRadius.all(Radius.circular(25))
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -110,10 +121,12 @@ class _LandingPageState extends State<LandingPage> {
                                 width: 100,
                                 height: 100,
                                 margin: const EdgeInsets.only(bottom: 20),
-                                decoration: const BoxDecoration(
-                                  color: Colors.amber,
-                                  shape: BoxShape.circle 
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
+                                  shape: BoxShape.circle,
                                 ),
+                                child: Image.asset("assets/icons/assessment.png"),
                               ),
                               const Text("Find employee",
                                 style: TextStyle(

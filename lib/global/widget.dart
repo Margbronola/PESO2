@@ -21,4 +21,24 @@ class MyWidget{
       obscureText: obscurity!,
     );
   }
+
+  Text text({
+    String? label,
+    double? size,
+    FontWeight? weight,
+    TextAlign? align,
+    double? letterSpacing,
+    Color? color,
+  }){
+    return Text(
+      label!,
+      style: TextStyle(
+        fontSize: size,
+        fontWeight: weight,
+        letterSpacing: letterSpacing,
+        color: color
+      ),
+      textAlign: align,
+    );
+  }
 }

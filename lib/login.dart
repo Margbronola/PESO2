@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:peso/landing.dart';
 import 'package:peso/registration.dart';
 import 'package:peso/welcome.dart';
 
@@ -108,10 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ), 
                   onPressed: (){
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       PageTransition(
-                        child: const WelcomePage(),
+                        child: const LandingPage(),
                         type: PageTransitionType.fade
                       )
                     );

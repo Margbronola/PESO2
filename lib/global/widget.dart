@@ -22,6 +22,26 @@ class MyWidget{
     );
   }
 
+  TextFormField textFormField2({
+    TextEditingController? controller,
+    TextInputType? inputType,
+    }){
+    return TextFormField(
+      controller: controller,
+      keyboardType: inputType,
+      maxLines: null,
+      decoration: const InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 7),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey), 
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey), 
+        ),
+      ),
+    );
+  }
+
   Text text({
     String? label,
     double? size,

@@ -1,4 +1,4 @@
-
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -85,11 +85,11 @@ class _JobOfferPageState extends State<JobOfferPage> {
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey.shade300),
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        borderRadius: const BorderRadius.all(Radius.circular(15)),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide:BorderSide(color: Colors.grey.shade300),
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        borderRadius: const BorderRadius.all(Radius.circular(15)),
                       ),
                       hintText: 'Search job offer',
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -113,7 +113,7 @@ class _JobOfferPageState extends State<JobOfferPage> {
 
               Container(
                 width: size.width,
-                height: size.height * .3,
+                height: size.height * .25,
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,9 +165,52 @@ class _JobOfferPageState extends State<JobOfferPage> {
                               return Container(
                                 width: size.width *.7,
                                 margin: const EdgeInsets.only(right: 10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                  borderRadius: const BorderRadius.all(Radius.circular(25)),
                                   color: Colors.grey.shade200,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 80,
+                                      height: 80,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black12,
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                      ),
+                                    ),
+
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text("Company Name".toUpperCase(), 
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey
+                                              ),
+                                              maxLines: 3,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            
+                                            SizedBox(
+                                              height: size.height * .009,
+                                            ),
+                                            
+                                            const Text("Company job vacancy",
+                                              textAlign: TextAlign.center,
+                                              maxLines: 3,
+                                              overflow: TextOverflow.ellipsis,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
                             }
@@ -239,8 +282,8 @@ class _JobOfferPageState extends State<JobOfferPage> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        width: 90,
-                                        height: size.height * .3,
+                                        width: 80,
+                                        height: 80,
                                         decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.all(Radius.circular(10)),
                                           color: Colors.black12,

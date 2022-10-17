@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:peso/form.dart';
 import 'package:peso/global/widget.dart';
 
 class FindJobPage extends StatefulWidget {
@@ -11,7 +13,6 @@ class FindJobPage extends StatefulWidget {
 class _FindJobPageState extends State<FindJobPage> {
   TextEditingController email = TextEditingController();
   TextEditingController address = TextEditingController();
-  String label = "Update";
 
   @override
   Widget build(BuildContext context) {
@@ -96,13 +97,17 @@ class _FindJobPageState extends State<FindJobPage> {
                             ),
                           ),
                           onPressed: (){
-                            setState(() {
-                              label = "Save";
-                            });
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                child: const FormPage(),
+                                type: PageTransitionType.fade
+                              )
+                            );
                           }, 
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(label, style: const TextStyle(color: Colors.black45, letterSpacing: 1)),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Update", style: TextStyle(color: Colors.black45, letterSpacing: 1)),
                           ),
                         )
                       ],
@@ -161,7 +166,7 @@ class _FindJobPageState extends State<FindJobPage> {
                     backgroundColor: Colors.white,
                     shadowColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                   child: MyWidget().text(
@@ -169,7 +174,7 @@ class _FindJobPageState extends State<FindJobPage> {
                     size: 20,
                     letterSpacing: 3,
                     weight: FontWeight.bold,
-                    color: Colors.grey
+                    color: Colors.grey.shade700
                   )
                 ),
               )

@@ -24,11 +24,11 @@ class MyWidget{
 
   TextFormField textFormField2({
     TextEditingController? controller,
-    TextInputType? inputType,
-    }){
+    TextAlign align = TextAlign.start,
+  }){
     return TextFormField(
       controller: controller,
-      keyboardType: inputType,
+      textAlign: align,
       maxLines: null,
       decoration: const InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 7),

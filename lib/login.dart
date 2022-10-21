@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:peso/landing.dart';
 import 'package:peso/registration.dart';
-import 'package:peso/welcome.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -45,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 margin: const EdgeInsets.only(bottom: 10),
                 child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: email,
                   decoration: const InputDecoration(
                     enabledBorder:  OutlineInputBorder(
@@ -109,13 +110,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ), 
                   onPressed: (){
-                    Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                        child: const LandingPage(),
-                        type: PageTransitionType.fade
-                      )
-                    );
+                    if(email.text.isEmpty || password.text.isEmpty){
+                      Fluttertoast.showToast(msg: "Enter your email/password");
+                    }
+                    else {
+                      Navigator.pushReplacement(
+                        context,
+                        PageTransition(
+                          child: const LandingPage(),
+                          type: PageTransitionType.fade
+                        )
+                      );
+                    }
                   },
                 ),
               ),
@@ -134,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.black,
                       ),
                       recognizer: TapGestureRecognizer()..onTap = (() {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           PageTransition(
                             child: const RegistrationPage(),

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool _isObscured = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 margin: const EdgeInsets.only(bottom: 30),
                 child: TextFormField(
                   controller: password,
-                  obscureText: _isObscured,
+                  obscureText: !_isObscured,
                   decoration: InputDecoration(
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),

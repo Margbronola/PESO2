@@ -260,6 +260,7 @@ class _JobOfferPageState extends State<JobOfferPage> {
                           child: ListView.separated(
                             shrinkWrap: true,
                             itemCount: 5,
+                            // features.length < 3 ? features.length : 3,
                             itemBuilder: (BuildContext ctx, int index){
                               return GestureDetector(
                                 onTap: () {

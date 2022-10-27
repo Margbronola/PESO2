@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:peso/form.dart';
 import 'package:peso/global/widget.dart';
+import 'package:peso/login.dart';
 
 class FindJobPage extends StatefulWidget {
   const FindJobPage({super.key});
@@ -161,7 +162,15 @@ class _FindJobPageState extends State<FindJobPage> {
                   ],
                 ),
                 child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                        child: const LoginPage(),
+                        type: PageTransitionType.fade
+                      )
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     shadowColor: Colors.transparent,

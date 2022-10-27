@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "571566783449",
+    "project_id": "peso-7d813",
+    "storage_bucket": "peso-7d813.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571566783449:android:d0b3a787ca120baadc77c8",
+        "android_client_info": {
+          "package_name": "com.example.peso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571566783449-l0i2rht15dq7dopgj88d3m78r0i62o17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsbOkDTyPbnLyiMDw6k_s9FYLMai0y8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571566783449-l0i2rht15dq7dopgj88d3m78r0i62o17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

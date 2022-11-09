@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:peso/landing.dart';
 import 'package:peso/registration.dart';
+import 'package:peso/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  final Authentication _auth = Authentication();
   bool _isObscured = false;
 
 
@@ -112,18 +114,23 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.white
                     ),
                   ), 
-                  onPressed: (){
+                  onPressed: () async{
                     if(email.text.isEmpty || password.text.isEmpty){
                       Fluttertoast.showToast(msg: "Enter your email/password");
                     }
                     else {
-                      Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                          child: const LandingPage(),
-                          type: PageTransitionType.fade
-                        )
-                      );
+                      await _auth.signIn(email: email.text, password: password.text).then((value){
+                        if(value != null){
+                          print("VALUE: $value");
+                          Navigator.pushReplacement(
+                            context,
+                            PageTransition(
+                              child: const LandingPage(),
+                              type: PageTransitionType.fade
+                            )
+                          );
+                        }
+                      });
                     }
                   },
                 ),

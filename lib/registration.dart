@@ -316,16 +316,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               isloading = true;
                             });
 
-                            // await _auth.create(email: email.text, password: password.text).then((value){
-                            //   if(value != null){
+                            await _auth.create(email: email.text, password: password.text, name:"${fname.text} ${lname.text}").then((value){
+                              if(value != null){
                                 Navigator.push(
                                   context, PageTransition(
                                     child: const LoginPage(),
                                     type: PageTransitionType.fade
                                   )
                                 );
-                            //   }
-                            // }).whenComplete(() => setState(()=> isloading = false));
+                              }
+                            }).whenComplete(() => setState(()=> isloading = false));
                           }
                         },
                       ),

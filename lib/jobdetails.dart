@@ -14,8 +14,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
-        foregroundColor: Colors.black, 
-        elevation: 0,  
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
       // PreferredSize(
       //           preferredSize: const Size.fromHeight(150),
@@ -31,8 +31,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       //     ),
       //   ),
       //   backgroundColor: Colors.transparent,
-      //   foregroundColor: Colors.black, 
-      //   elevation: 0,   
+      //   foregroundColor: Colors.black,
+      //   elevation: 0,
       // ),
       // ),
       body: Container(
@@ -42,13 +42,10 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView(
           children: [
-            const Text("JOB OFFER", 
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20
-              ),
+            const Text(
+              "JOB OFFER",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-
             Container(
               width: size.width,
               height: 100,
@@ -57,114 +54,106 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
               child: Row(
                 children: [
                   Container(
-                    width: 50,
-                    height: 50,
+                    width: 70,
+                    height: 80,
                     color: Colors.grey,
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("Company Name",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-
-                        Text("Address",
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic
-                          ),
-                        )
-                      ],
-                    )
-                  ),
-                  
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Company Name",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "Address",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      )
+                    ],
+                  )),
                 ],
               ),
             ),
-
             Container(
               width: size.width,
               margin: const EdgeInsets.only(top: 10),
               decoration: const BoxDecoration(
-                borderRadius:  BorderRadius.all(Radius.circular(20)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
                 color: Colors.white,
               ),
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text("About the Job",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17
-                    ),
+                  Text(
+                    "About the Job",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
-
                   SizedBox(
                     height: 10,
                   ),
-
                 ],
               ),
             ),
-
             Container(
               width: size.width,
               margin: const EdgeInsets.only(top: 10),
               decoration: const BoxDecoration(
-                borderRadius:  BorderRadius.all(Radius.circular(20)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
                 color: Colors.white,
               ),
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text("Qualification",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17
-                    ),
+                  Text(
+                    "Qualification",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
-
                   SizedBox(
                     height: 10,
                   ),
-
                 ],
               ),
             ),
-
             Container(
               width: size.width,
               margin: const EdgeInsets.only(top: 10),
               decoration: const BoxDecoration(
-                borderRadius:  BorderRadius.all(Radius.circular(20)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
                 color: Colors.white,
               ),
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text("Company Details",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17
-                    ),
+                  Text(
+                    "Company Details",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
-                  
                   SizedBox(
                     height: 10,
                   ),
-
-                  
                 ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 55,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey.shade700),
+                child: const Text(
+                  "APPLY",
+                  style: TextStyle(letterSpacing: 2, fontSize: 18),
+                ),
+                onPressed: () {},
               ),
             )
           ],

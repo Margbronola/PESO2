@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:peso/global/container.dart';
 import 'package:peso/global/widget.dart';
 import 'package:peso/landing.dart';
 import 'package:peso/registration.dart';
@@ -135,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                   email: email.text, password: password.text)
                               .then((value) {
                             if (value != null) {
-                              print("VALUE: $value");
+                              print("VALUE : $value");
                               Navigator.pushReplacement(
                                   context,
                                   PageTransition(

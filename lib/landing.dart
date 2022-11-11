@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:peso/findjob.dart';
-import 'package:peso/joboffer.dart';
+import 'package:peso/employeelanding.dart';
+import 'package:peso/login.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -67,7 +67,7 @@ class _LandingPageState extends State<LandingPage> {
                           Navigator.push(
                             context,
                             PageTransition(
-                              child: JobOfferPage(isfromemployee: true),
+                              child: const LoginPage(),
                               type: PageTransitionType.fade
                             )
                           );
@@ -112,7 +112,7 @@ class _LandingPageState extends State<LandingPage> {
                           Navigator.push(
                             context,
                             PageTransition(
-                              child: JobOfferPage(isfromemployee: false,),
+                              child: const LoginPage(),
                               type: PageTransitionType.fade
                             )
                           );

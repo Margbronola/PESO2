@@ -1,9 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:peso/global/datacacher.dart';
 import 'package:peso/login.dart';
+import 'package:peso/splashscreen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  final DataCacher cacher = DataCacher.instance;
+  await cacher.init();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: const SplashScreenPage(),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class MyWidget{
@@ -59,6 +61,19 @@ class MyWidget{
         color: color
       ),
       textAlign: align,
+    );
+  }
+
+  loader() {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaY: 4, sigmaX: 4),
+      child: Container(
+        color: Colors.white.withOpacity(0.4),
+        child: const Center(
+            child: CircularProgressIndicator(
+          color: Colors.black54,
+        )),
+      ),
     );
   }
 }

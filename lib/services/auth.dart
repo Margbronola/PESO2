@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Authentication{
     static final FirebaseAuth auth = FirebaseAuth.instance;
@@ -26,9 +29,13 @@ class Authentication{
       final UserCredential authResult = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       if (authResult.user == null) return null;
-      return await authResult.user!.getIdToken();
-    } 
-    catch (e){
+      return authResult.user!.uid;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(msg: "Account not found");
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(msg: "Incorrect password");
+      } else if (e.code == "") {}
       return null;
     }
   }

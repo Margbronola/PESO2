@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:peso/companylanding.dart';
-import 'package:peso/findemployee.dart';
+import 'package:peso/company/companylanding.dart';
+import 'package:peso/company/findemployee.dart';
 import 'package:peso/global/container.dart';
 import 'package:peso/global/datacacher.dart';
-import 'package:peso/employeelanding.dart';
+import 'package:peso/Employee/employeelanding.dart';
 import 'package:peso/landing.dart';
 import 'package:peso/login.dart';
+import 'package:peso/services/addingUser.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});
@@ -20,6 +21,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   checker() async {
     String? d = _cacher.token;
+    String? p = _cacher.pages;
+    String? _uid = _cacher.uid;
+    print("ACCESS TOKEN: $d");
+    print("USER ID: $_uid");
 
     if (d == null) {
       await Future.delayed(const Duration(seconds: 2));
@@ -33,15 +38,28 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     } else {
       setState(() {
         accesstoken = d;
+        page = p;
+        uid = _uid;
       });
-      await Future.delayed(const Duration(seconds: 2));
-      Navigator.pushReplacement(
-        context,
-        PageTransition(
-          child: EmployeeLandingPage(isfromemployee: true,),
-          type: PageTransitionType.fade,
-        ),
-      );
+      if (page == "Company") {
+        await Future.delayed(const Duration(seconds: 2));
+        Navigator.pushReplacement(
+          context,
+          PageTransition(
+            child: const CompanyLandingPage(),
+            type: PageTransitionType.fade,
+          ),
+        );
+      } else {
+        await Future.delayed(const Duration(seconds: 2));
+        Navigator.pushReplacement(
+          context,
+          PageTransition(
+            child: const EmployeeLandingPage(),
+            type: PageTransitionType.fade,
+          ),
+        );
+      }
     }
   }
 

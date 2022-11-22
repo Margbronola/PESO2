@@ -1,20 +1,18 @@
-class User {
+class UserModel {
   final int id;
   final String fname;
   final String lname;
   final String email;
-  // final String password;
 
-  const User({
+  const UserModel({
     required this.email,
     required this.fname,
     required this.id,
     required this.lname,
-    // required this.password,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       email: json['email'],
       fname: json['fname'],
       id: json['uid'],

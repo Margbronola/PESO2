@@ -1,29 +1,68 @@
 // ignore_for_file: avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:peso/global/container.dart';
 import 'package:peso/global/datacacher.dart';
+import 'package:peso/model/user.dart';
 
-class Authentication{
-    static final FirebaseAuth auth = FirebaseAuth.instance;
+class Authentication {
+  static final FirebaseAuth auth = FirebaseAuth.instance;
   final DataCacher cacher = DataCacher.instance;
-
-  Future<String?> create({required String email, required String password, required String name}) async {
+  CollectionReference user = FirebaseFirestore.instance.collection('User');
+  CollectionReference company =
+      FirebaseFirestore.instance.collection('Company');
+  Future<String?> create(
+      {required String email,
+      required String password,
+      required String fname,
+      required String lname,
+      required String page}) async {
     try {
       UserCredential creds = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       if (creds.user == null) return null;
-      print("CRED USER: ${creds.user}");
       cacher.token = "${creds.user!.getIdToken()}";
-      return await creds.user!.getIdToken();
-    } 
-    catch (e){
+      cacher.uid = creds.user!.uid;
+      cacher.pages = page;
+      uid = creds.user!.uid;
+      if (page == "Company") {
+        company.doc(creds.user!.uid).set({
+          "email": email,
+          "firstname": fname,
+          "lastname": lname,
+          "address": null,
+          "map": null,
+          "Telephone": null,
+          "image": null,
+        });
+        return await creds.user!.getIdToken();
+      } else {
+        user.doc(creds.user!.uid).set({
+          "email": email,
+          "firstname": fname,
+          "lastname": lname,
+          "image": null,
+          "address": null,
+          "birthday": null,
+          "gender": null,
+          "phoneNumber": null,
+          "skills": null,
+          "experience": null,
+        });
+        return await creds.user!.getIdToken();
+      }
+    } catch (e) {
       return null;
     }
   }
 
-  Future<String?> signIn({required String email, required String password}) async {
+  Future<String?> signIn(
+      {required String email,
+      required String password,
+      required String page}) async {
     try {
       final AuthCredential credential = EmailAuthProvider.credential(
         email: email,
@@ -32,8 +71,10 @@ class Authentication{
       final UserCredential authResult = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       if (authResult.user == null) return null;
-      print("USER UID: ${authResult.user!.uid}");
       cacher.token = "${authResult.user!.getIdToken()}";
+      cacher.pages = page;
+      cacher.uid = authResult.user!.uid;
+      uid = authResult.user!.uid;
       return authResult.user!.getIdToken();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -45,11 +86,10 @@ class Authentication{
     }
   }
 
-  Future<void> signout() async{
-    try{
+  Future<void> signout() async {
+    try {
       FirebaseAuth.instance.signOut();
-    }
-    catch(e){
+    } catch (e) {
       return;
     }
   }

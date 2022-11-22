@@ -27,11 +27,13 @@ class MyWidget{
   TextFormField textFormField2({
     TextEditingController? controller,
     TextAlign align = TextAlign.start,
+    int maxline = 1,
   }){
     return TextFormField(
       controller: controller,
       textAlign: align,
-      maxLines: null,
+      maxLines: maxline,
+      keyboardType: TextInputType.multiline,
       decoration: const InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 7),
         enabledBorder: OutlineInputBorder(

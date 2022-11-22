@@ -1,17 +1,19 @@
-// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: unnecessary_string_interpolations, avoid_print, must_be_immutable
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:peso/Employee/employeelanding.dart';
+import 'package:peso/company/companylanding.dart';
 import 'package:peso/global/container.dart';
 import 'package:peso/global/widget.dart';
-import 'package:peso/landing.dart';
 import 'package:peso/registration.dart';
 import 'package:peso/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  String page;
+  LoginPage({super.key, this.page = ""});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -133,15 +135,29 @@ class _LoginPageState extends State<LoginPage> {
                         } else {
                           await _auth
                               .signIn(
-                                  email: email.text, password: password.text)
+                                  email: email.text,
+                                  password: password.text,
+                                  page: widget.page)
                               .then((value) {
                             if (value != null) {
                               print("VALUE : $value");
-                              Navigator.pushReplacement(
+                              if (widget.page == "Company") {
+                                Navigator.pushReplacement(
                                   context,
                                   PageTransition(
-                                      child: const LandingPage(),
-                                      type: PageTransitionType.fade));
+                                    child: const CompanyLandingPage(),
+                                    type: PageTransitionType.fade,
+                                  ),
+                                );
+                              } else {
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageTransition(
+                                    child: const EmployeeLandingPage(),
+                                    type: PageTransitionType.fade,
+                                  ),
+                                );
+                              }
                             }
                           });
                         }
@@ -169,7 +185,9 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.pushReplacement(
                                   context,
                                   PageTransition(
-                                      child: const RegistrationPage(),
+                                      child: RegistrationPage(
+                                        type: widget.page,
+                                      ),
                                       type: PageTransitionType.fade));
                             }),
                         ),

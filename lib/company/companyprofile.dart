@@ -113,8 +113,7 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                  "${docs.get("firstname")} ${docs.get("lastname")}",
+                                              Text("${docs.get("companyname")}",
                                                   style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -236,125 +235,125 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                 ],
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 20),
-                              child: MyWidget().text(
-                                label: "Hiring",
-                                size: 16,
-                                letterSpacing: 2,
-                                weight: FontWeight.bold,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: StreamBuilder(
-                                stream: FirebaseFirestore.instance
-                                    .collection("Company")
-                                    .doc(uid)
-                                    .collection("Hiring")
-                                    .snapshots(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData && !snapshot.hasError) {
-                                    final result = snapshot.data!;
-                                    return ListView.builder(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      padding: const EdgeInsets.all(0),
-                                      itemCount: result.size,
-                                      itemBuilder: (_, i) {
-                                        final available = result.docs[i];
-                                        return Container(
-                                          margin:
-                                              const EdgeInsets.only(bottom: 5),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                  "${available.get("position")}"),
-                                              MaterialButton(
-                                                padding:
-                                                    const EdgeInsets.all(0),
-                                                elevation: 0,
-                                                onPressed: () {
-                                                  FirebaseFirestore.instance
-                                                      .collection('Company')
-                                                      .doc(uid)
-                                                      .collection('Hiring')
-                                                      .doc(available.id)
-                                                      .delete();
-                                                },
-                                                color: Colors.white,
-                                                child: const Text(
-                                                  "COMPLETE",
-                                                  style: TextStyle(
-                                                    color: Colors.red,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  }
-                                  return const Text(
-                                    "No available hiring",
-                                    textAlign: TextAlign.center,
-                                  );
-                                },
-                              ),
-                            ),
-                            Container(
-                              width: size.width,
-                              height: 55,
-                              margin: const EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    spreadRadius: 3,
-                                    blurRadius: 7,
-                                    offset: const Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageTransition(
-                                      child: PostHiringPage(
-                                        name:
-                                            "${docs.get("firstname")}  ${docs.get("lastname")}",
-                                        email: "${docs.get("email")}",
-                                        image: "${docs.get("image")}",
-                                        address: "${docs.get("address")}",
-                                        telephone: "${docs.get("Telephone")}",
-                                        map: "${docs.get("map")}",
-                                      ),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  shadowColor: Colors.transparent,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                child: MyWidget().text(
-                                  label: "POST HIRING",
-                                  size: 20,
-                                  letterSpacing: 3,
-                                  weight: FontWeight.bold,
-                                  color: Colors.grey.shade700,
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   margin: const EdgeInsets.only(top: 20),
+                            //   child: MyWidget().text(
+                            //     label: "Hiring",
+                            //     size: 16,
+                            //     letterSpacing: 2,
+                            //     weight: FontWeight.bold,
+                            //   ),
+                            // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.symmetric(
+                            //       vertical: 10, horizontal: 20),
+                            //   child: StreamBuilder(
+                            //     stream: FirebaseFirestore.instance
+                            //         .collection("Company")
+                            //         .doc(uid)
+                            //         .collection("Hiring")
+                            //         .snapshots(),
+                            //     builder: (context, snapshot) {
+                            //       if (snapshot.hasData && !snapshot.hasError) {
+                            //         final result = snapshot.data!;
+                            //         return ListView.builder(
+                            //           shrinkWrap: true,
+                            //           physics:
+                            //               const NeverScrollableScrollPhysics(),
+                            //           padding: const EdgeInsets.all(0),
+                            //           itemCount: result.size,
+                            //           itemBuilder: (_, i) {
+                            //             final available = result.docs[i];
+                            //             return Container(
+                            //               margin:
+                            //                   const EdgeInsets.only(bottom: 5),
+                            //               child: Row(
+                            //                 mainAxisAlignment:
+                            //                     MainAxisAlignment.spaceBetween,
+                            //                 children: [
+                            //                   Text(
+                            //                       "${available.get("position")}"),
+                            //                   MaterialButton(
+                            //                     padding:
+                            //                         const EdgeInsets.all(0),
+                            //                     elevation: 0,
+                            //                     onPressed: () {
+                            //                       FirebaseFirestore.instance
+                            //                           .collection('Company')
+                            //                           .doc(uid)
+                            //                           .collection('Hiring')
+                            //                           .doc(available.id)
+                            //                           .delete();
+                            //                     },
+                            //                     color: Colors.white,
+                            //                     child: const Text(
+                            //                       "COMPLETE",
+                            //                       style: TextStyle(
+                            //                         color: Colors.red,
+                            //                       ),
+                            //                     ),
+                            //                   ),
+                            //                 ],
+                            //               ),
+                            //             );
+                            //           },
+                            //         );
+                            //       }
+                            //       return const Text(
+                            //         "No available hiring",
+                            //         textAlign: TextAlign.center,
+                            //       );
+                            //     },
+                            //   ),
+                            // ),
+                            // Container(
+                            //   width: size.width,
+                            //   height: 55,
+                            //   margin: const EdgeInsets.only(top: 10),
+                            //   decoration: BoxDecoration(
+                            //     boxShadow: [
+                            //       BoxShadow(
+                            //         color: Colors.grey.shade300,
+                            //         spreadRadius: 3,
+                            //         blurRadius: 7,
+                            //         offset: const Offset(0, 3),
+                            //       ),
+                            //     ],
+                            //   ),
+                            //   child: ElevatedButton(
+                            //     onPressed: () {
+                            //       Navigator.pushReplacement(
+                            //         context,
+                            //         PageTransition(
+                            //           child: PostHiringPage(
+                            //             name:
+                            //                 "${docs.get("firstname")}  ${docs.get("lastname")}",
+                            //             email: "${docs.get("email")}",
+                            //             image: "${docs.get("image")}",
+                            //             address: "${docs.get("address")}",
+                            //             telephone: "${docs.get("Telephone")}",
+                            //             map: "${docs.get("map")}",
+                            //           ),
+                            //           type: PageTransitionType.fade,
+                            //         ),
+                            //       );
+                            //     },
+                            //     style: ElevatedButton.styleFrom(
+                            //       backgroundColor: Colors.white,
+                            //       shadowColor: Colors.transparent,
+                            //       shape: RoundedRectangleBorder(
+                            //         borderRadius: BorderRadius.circular(20),
+                            //       ),
+                            //     ),
+                            //     child: MyWidget().text(
+                            //       label: "POST HIRING",
+                            //       size: 20,
+                            //       letterSpacing: 3,
+                            //       weight: FontWeight.bold,
+                            //       color: Colors.grey.shade700,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         );
                       }

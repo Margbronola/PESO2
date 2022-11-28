@@ -55,11 +55,13 @@ class _PostHiringPageState extends State<PostHiringPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade200,
         foregroundColor: Colors.black,
         elevation: 0,
-        title: const Text("HIRING"),
-        titleSpacing: 2,
+        title: const Text(
+          "HIRING",
+          style: TextStyle(letterSpacing: 2, fontSize: 20),
+        ),
         centerTitle: true,
       ),
       body: Container(
@@ -69,6 +71,36 @@ class _PostHiringPageState extends State<PostHiringPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                    ),
+                    child: Image.network(
+                      widget.image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 30),
+                Expanded(
+                  child: MyWidget().text(
+                    label: widget.name,
+                    size: 25,
+                    letterSpacing: 2,
+                    weight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: MyWidget().text(
@@ -81,7 +113,7 @@ class _PostHiringPageState extends State<PostHiringPage> {
             const SizedBox(height: 10),
             Container(
               child:
-                  MyWidget().textFormField2(maxline: 2, controller: position),
+                  MyWidget().textFormField2(maxline: 1, controller: position),
             ),
             const SizedBox(height: 10),
             Container(

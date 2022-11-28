@@ -1,25 +1,30 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:peso/Employee/employeelanding.dart';
-import 'package:peso/company/companylanding.dart';
+import 'package:peso/global/widget.dart';
 import 'package:peso/login.dart';
 import 'package:peso/services/auth.dart';
 
-class RegistrationPage extends StatefulWidget {
+class EmployeeRegistrationPage extends StatefulWidget {
   String type;
-  RegistrationPage({super.key, this.type = ""});
+  EmployeeRegistrationPage({super.key, this.type = ""});
 
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  State<EmployeeRegistrationPage> createState() =>
+      _EmployeeRegistrationPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class _EmployeeRegistrationPageState extends State<EmployeeRegistrationPage> {
   TextEditingController email = TextEditingController();
   TextEditingController fname = TextEditingController();
   TextEditingController lname = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController number = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final Authentication _auth = Authentication();
   bool isobsecure = false;
@@ -29,7 +34,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -45,7 +49,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 child: ListView(
                   children: [
                     SizedBox(
-                      height: size.height * .08,
+                      height: size.height * .09,
                     ),
                     const Text(
                       "CREATE ACCOUNT",
@@ -63,7 +67,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         Container(
                           margin: const EdgeInsets.only(right: 10),
                           child: const Icon(
-                            Icons.person_rounded,
+                            Icons.person,
                             color: Colors.black87,
                           ),
                         ),
@@ -99,7 +103,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         Container(
                           margin: const EdgeInsets.only(right: 10),
                           child: const Icon(
-                            Icons.person_rounded,
+                            Icons.person,
                             color: Colors.black87,
                           ),
                         ),
@@ -301,7 +305,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             });
 
                             await _auth
-                                .create(
+                                .createEmployee(
                                     email: email.text,
                                     password: password.text,
                                     fname: fname.text,
@@ -309,23 +313,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     page: widget.type)
                                 .then((value) {
                               if (value != null) {
-                                if (widget.type == "Company") {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageTransition(
-                                      child: const CompanyLandingPage(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                } else {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageTransition(
-                                      child: const EmployeeLandingPage(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                }
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageTransition(
+                                    child: const EmployeeLandingPage(),
+                                    type: PageTransitionType.fade,
+                                  ),
+                                );
                               }
                             }).whenComplete(
                                     () => setState(() => isloading = false));
@@ -348,16 +342,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               recognizer: TapGestureRecognizer()
                                 ..onTap = (() {
                                   Navigator.pushReplacement(
-                                      context,
-                                      PageTransition(
-                                          child: LoginPage(page: widget.type),
-                                          type: PageTransitionType.fade));
+                                    context,
+                                    PageTransition(
+                                      child: LoginPage(page: widget.type),
+                                      type: PageTransitionType.fade,
+                                    ),
+                                  );
                                 }),
                             ),
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),

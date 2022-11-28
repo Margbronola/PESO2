@@ -8,7 +8,8 @@ import 'package:peso/Employee/employeelanding.dart';
 import 'package:peso/company/companylanding.dart';
 import 'package:peso/global/container.dart';
 import 'package:peso/global/widget.dart';
-import 'package:peso/registration.dart';
+import 'package:peso/registrationcompany.dart';
+import 'package:peso/registrationemployee.dart';
 import 'package:peso/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -182,13 +183,23 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = (() {
-                              Navigator.pushReplacement(
-                                  context,
-                                  PageTransition(
-                                      child: RegistrationPage(
-                                        type: widget.page,
-                                      ),
-                                      type: PageTransitionType.fade));
+                              if (widget.page == "Company") {
+                                Navigator.pushReplacement(
+                                    context,
+                                    PageTransition(
+                                        child: CompanyRegistrationPage(
+                                          type: widget.page,
+                                        ),
+                                        type: PageTransitionType.fade));
+                              } else {
+                                Navigator.pushReplacement(
+                                    context,
+                                    PageTransition(
+                                        child: EmployeeRegistrationPage(
+                                          type: widget.page,
+                                        ),
+                                        type: PageTransitionType.fade));
+                              }
                             }),
                         ),
                       ],

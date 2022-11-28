@@ -18,6 +18,7 @@ class Applicant {
     String number,
     String sex,
     String birthday,
+    String jobId,
     List<dynamic> skills,
     List<dynamic> experience,
   ) async {
@@ -34,6 +35,7 @@ class Applicant {
           "skills": skills,
           "experience": experience,
           "companyid": companyid,
+          "jobId": jobId,
         })
         .then((value) => print("data Added"))
         .catchError((error) => print("data couldn't be added."));

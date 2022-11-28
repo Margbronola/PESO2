@@ -4,8 +4,9 @@ import 'package:peso/global/container.dart';
 import 'package:peso/services/applicant.dart';
 
 class JobDetailsPage extends StatefulWidget {
+  String jobId;
   dynamic data;
-  JobDetailsPage({super.key, required this.data});
+  JobDetailsPage({super.key, required this.data, required this.jobId});
 
   @override
   State<JobDetailsPage> createState() => _JobDetailsPageState();
@@ -15,6 +16,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
@@ -241,17 +243,19 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                     ),
                     onPressed: () {
                       Applicant().apply(
-                          widget.data['uid'],
-                          result.get("firstname"),
-                          result.get("lastname"),
-                          result.get("email"),
-                          result.get("image"),
-                          result.get("address"),
-                          result.get("phoneNumber"),
-                          result.get("gender"),
-                          result.get("birthday"),
-                          result.get("skills"),
-                          result.get("experience"));
+                        widget.data['uid'],
+                        result.get("firstname"),
+                        result.get("lastname"),
+                        result.get("email"),
+                        result.get("image"),
+                        result.get("address"),
+                        result.get("phoneNumber"),
+                        result.get("gender"),
+                        result.get("birthday"),
+                        widget.jobId,
+                        result.get("skills"),
+                        result.get("experience"),
+                      );
                     },
                   ),
                 );

@@ -1,11 +1,9 @@
 // ignore_for_file: deprecated_member_use, prefer_typing_uninitialized_variables, avoid_print
 
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart';
 import 'package:peso/global/container.dart';
 import 'package:peso/global/widget.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +22,14 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
   late final TextEditingController number;
   late final TextEditingController _skills;
   late final TextEditingController _experience;
+  late final TextEditingController interestedjob;
+  late final TextEditingController elem;
+  late final TextEditingController elemgrad;
+  late final TextEditingController highschool;
+  late final TextEditingController hsgrad;
+  late final TextEditingController college;
+  late final TextEditingController collegegrad;
+
   final ImagePicker _picker = ImagePicker();
   String gender = "";
   var imageFile;
@@ -37,6 +43,13 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
     number = TextEditingController();
     _skills = TextEditingController();
     _experience = TextEditingController();
+    interestedjob = TextEditingController();
+    elem = TextEditingController();
+    elemgrad = TextEditingController();
+    highschool = TextEditingController();
+    hsgrad = TextEditingController();
+    college = TextEditingController();
+    collegegrad = TextEditingController();
     super.initState();
   }
 
@@ -47,6 +60,13 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
     number.dispose();
     _skills.dispose();
     _experience.dispose();
+    interestedjob.dispose();
+    elem.dispose();
+    elem.dispose();
+    highschool.dispose();
+    hsgrad.dispose();
+    college.dispose();
+    college.dispose();
     super.dispose();
   }
 
@@ -204,6 +224,19 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                       )),
                     ],
                   ),
+                  const Divider(color: Colors.transparent),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "Desired Position : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: interestedjob),
+                      )),
+                    ],
+                  ),
                   const SizedBox(height: 25),
                   MyWidget().text(
                     label: "Skills",
@@ -224,6 +257,90 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 25),
+                  MyWidget().text(
+                    label: "Educational Attainment",
+                    weight: FontWeight.bold,
+                    size: 17,
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "Elementary : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: elem),
+                      )),
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "School Year : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: elemgrad),
+                      )),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "High School : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: highschool),
+                      )),
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "School Year : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: hsgrad),
+                      )),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "College : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: college),
+                      )),
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "School Year : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: collegegrad),
+                      )),
+                    ],
                   ),
                   const SizedBox(height: 25),
                   MyWidget().text(
@@ -266,7 +383,8 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                                     gender == "" &&
                                     number.text.isEmpty &&
                                     _skills.text.isEmpty &&
-                                    _experience.text.isEmpty) {
+                                    _experience.text.isEmpty &&
+                                    interestedjob.text.isEmpty) {
                                   Fluttertoast.showToast(
                                       msg: "Fill all fields");
                                   setState(() {
@@ -274,14 +392,20 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                                   });
                                 } else {
                                   UpdateData().updateEmployee(
-                                    uid,
-                                    address.text,
-                                    birthdate.text,
-                                    gender,
-                                    number.text,
-                                    skills,
-                                    experience,
-                                  );
+                                      uid,
+                                      address.text,
+                                      birthdate.text,
+                                      gender,
+                                      number.text,
+                                      interestedjob.text,
+                                      skills,
+                                      experience,
+                                      elem.text,
+                                      elemgrad.text,
+                                      highschool.text,
+                                      hsgrad.text,
+                                      college.text,
+                                      collegegrad.text);
                                   UpdateData()
                                       .uploadImage(imageFile)
                                       .then((value) async {

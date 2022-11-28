@@ -11,13 +11,21 @@ class UpdateData {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> updateEmployee(
-      uid,
-      String address,
-      String birthday,
-      String gender,
-      String number,
-      List<String> skills,
-      List<String> experience) async {
+    uid,
+    String address,
+    String birthday,
+    String gender,
+    String number,
+    String interestedjob,
+    List<String> skills,
+    List<String> experience,
+    String elem,
+    String eyg,
+    String highschool,
+    String hsyg,
+    String college,
+    String cyg,
+  ) async {
     return await user
         .doc(uid)
         .update({
@@ -27,6 +35,13 @@ class UpdateData {
           "phoneNumber": number,
           "skills": skills,
           "experience": experience,
+          "desiredPosition": interestedjob,
+          "Elementary": elem,
+          "ElemSchoolYear": eyg,
+          "HighSchool": highschool,
+          "HSSchoolYear": hsyg,
+          "College": college,
+          "CollegeSchoolYear": cyg,
         })
         .then((value) => print("data Added"))
         .catchError((error) => print("data couldn't be added."));

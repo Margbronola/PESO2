@@ -2,21 +2,19 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class MyWidget{
+class MyWidget {
   TextFormField textFormField({
     String? label,
     TextEditingController? controller,
     TextInputType? inputType,
     bool? obscurity,
-    }){
+  }) {
     return TextFormField(
       controller: controller,
       keyboardType: inputType,
       decoration: InputDecoration(
         enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            width: 2, color: Colors.grey
-          ), 
+          borderSide: BorderSide(width: 2, color: Colors.grey),
         ),
         labelText: label,
       ),
@@ -28,19 +26,19 @@ class MyWidget{
     TextEditingController? controller,
     TextAlign align = TextAlign.start,
     int maxline = 1,
-  }){
+  }) {
     return TextFormField(
       controller: controller,
       textAlign: align,
       maxLines: maxline,
       keyboardType: TextInputType.multiline,
       decoration: const InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 7),
+        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey), 
+          borderSide: BorderSide(color: Colors.grey),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey), 
+          borderSide: BorderSide(color: Colors.grey),
         ),
       ),
     );
@@ -53,15 +51,14 @@ class MyWidget{
     TextAlign? align,
     double? letterSpacing,
     Color? color,
-  }){
+  }) {
     return Text(
       label!,
       style: TextStyle(
-        fontSize: size,
-        fontWeight: weight,
-        letterSpacing: letterSpacing,
-        color: color
-      ),
+          fontSize: size,
+          fontWeight: weight,
+          letterSpacing: letterSpacing,
+          color: color),
       textAlign: align,
     );
   }

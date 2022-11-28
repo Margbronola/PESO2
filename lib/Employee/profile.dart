@@ -249,6 +249,58 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ))
                                       ],
                                     ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("Desired Position ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("desiredPosition") != null
+                                              ? "${docs.get("desiredPosition")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                  margin: const EdgeInsets.only(top: 20),
+                                  child: MyWidget().text(
+                                    label: "Educational Attainment",
+                                    size: 16,
+                                    letterSpacing: 2,
+                                    weight: FontWeight.bold,
+                                  )),
+                              Container(
+                                width: size.width,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("Elementary ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("Elementary") != null
+                                              ? "${docs.get("Elementary")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
                                   ],
                                 ),
                               ),

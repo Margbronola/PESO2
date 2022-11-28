@@ -14,7 +14,34 @@ class Authentication {
   CollectionReference user = FirebaseFirestore.instance.collection('User');
   CollectionReference company =
       FirebaseFirestore.instance.collection('Company');
-  Future<String?> create(
+  Future<String?> createCompany(
+      {required String email,
+      required String password,
+      required String name,
+      required String page}) async {
+    try {
+      UserCredential creds = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      if (creds.user == null) return null;
+      cacher.token = "${creds.user!.getIdToken()}";
+      cacher.uid = creds.user!.uid;
+      cacher.pages = page;
+      uid = creds.user!.uid;
+      company.doc(creds.user!.uid).set({
+        "email": email,
+        "companyname": name,
+        "address": null,
+        "map": null,
+        "Telephone": null,
+        "image": null,
+      });
+      return await creds.user!.getIdToken();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<String?> createEmployee(
       {required String email,
       required String password,
       required String fname,
@@ -28,32 +55,19 @@ class Authentication {
       cacher.uid = creds.user!.uid;
       cacher.pages = page;
       uid = creds.user!.uid;
-      if (page == "Company") {
-        company.doc(creds.user!.uid).set({
-          "email": email,
-          "firstname": fname,
-          "lastname": lname,
-          "address": null,
-          "map": null,
-          "Telephone": null,
-          "image": null,
-        });
-        return await creds.user!.getIdToken();
-      } else {
-        user.doc(creds.user!.uid).set({
-          "email": email,
-          "firstname": fname,
-          "lastname": lname,
-          "image": null,
-          "address": null,
-          "birthday": null,
-          "gender": null,
-          "phoneNumber": null,
-          "skills": null,
-          "experience": null,
-        });
-        return await creds.user!.getIdToken();
-      }
+      user.doc(creds.user!.uid).set({
+        "email": email,
+        "firstname": fname,
+        "lastname": lname,
+        "image": null,
+        "address": null,
+        "birthday": null,
+        "gender": null,
+        "phoneNumber": null,
+        "skills": null,
+        "experience": null,
+      });
+      return await creds.user!.getIdToken();
     } catch (e) {
       return null;
     }

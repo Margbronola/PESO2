@@ -29,6 +29,9 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
   late final TextEditingController hsgrad;
   late final TextEditingController college;
   late final TextEditingController collegegrad;
+  late final TextEditingController religion;
+  late final TextEditingController age;
+  late final TextEditingController civilstatus;
 
   final ImagePicker _picker = ImagePicker();
   String gender = "";
@@ -50,6 +53,9 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
     hsgrad = TextEditingController();
     college = TextEditingController();
     collegegrad = TextEditingController();
+    religion = TextEditingController();
+    age = TextEditingController();
+    civilstatus = TextEditingController();
     super.initState();
   }
 
@@ -66,7 +72,10 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
     highschool.dispose();
     hsgrad.dispose();
     college.dispose();
-    college.dispose();
+    collegegrad.dispose();
+    religion.dispose();
+    age.dispose();
+    civilstatus.dispose();
     super.dispose();
   }
 
@@ -179,6 +188,19 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                   const Divider(color: Colors.transparent),
                   Row(
                     children: [
+                      MyWidget().text(label: "Age : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: age, keyboardType: TextInputType.number),
+                      )),
+                    ],
+                  ),
+                  const Divider(color: Colors.transparent),
+                  Row(
+                    children: [
                       MyWidget().text(label: "Gender : "),
                       const Expanded(child: SizedBox()),
                       SizedBox(
@@ -186,7 +208,7 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: const Text("Male"),
-                          value: "male",
+                          value: "Male",
                           groupValue: gender,
                           onChanged: (value) {
                             setState(() {
@@ -200,7 +222,7 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: const Text("Female"),
-                          value: "female",
+                          value: "Female",
                           groupValue: gender,
                           onChanged: (value) {
                             setState(() {
@@ -214,13 +236,39 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                   const Divider(color: Colors.transparent),
                   Row(
                     children: [
+                      MyWidget().text(label: "Civil Status : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: civilstatus),
+                      )),
+                    ],
+                  ),
+                  const Divider(color: Colors.transparent),
+                  Row(
+                    children: [
                       MyWidget().text(label: "Phone No. : "),
                       Expanded(
                           child: Container(
                         height: 40,
                         padding: const EdgeInsets.only(left: 10),
                         child: MyWidget().textFormField2(
-                            align: TextAlign.right, controller: number),
+                            align: TextAlign.right, controller: number, keyboardType: TextInputType.number),
+                      )),
+                    ],
+                  ),
+                  const Divider(color: Colors.transparent),
+                  Row(
+                    children: [
+                      MyWidget().text(label: "Religion : "),
+                      Expanded(
+                          child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.only(left: 10),
+                        child: MyWidget().textFormField2(
+                            align: TextAlign.right, controller: religion),
                       )),
                     ],
                   ),
@@ -384,7 +432,7 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                                     number.text.isEmpty &&
                                     _skills.text.isEmpty &&
                                     _experience.text.isEmpty &&
-                                    interestedjob.text.isEmpty) {
+                                    interestedjob.text.isEmpty && age.text.isEmpty && religion.text.isEmpty && civilstatus.text.isEmpty && elem.text.isEmpty && elemgrad.text.isEmpty && highschool.text.isEmpty && hsgrad.text.isEmpty) {
                                   Fluttertoast.showToast(
                                       msg: "Fill all fields");
                                   setState(() {
@@ -405,7 +453,10 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                                       highschool.text,
                                       hsgrad.text,
                                       college.text,
-                                      collegegrad.text);
+                                      collegegrad.text,
+                                      religion.text,
+                                      age.text,
+                                      civilstatus.text);
                                   UpdateData()
                                       .uploadImage(imageFile)
                                       .then((value) async {

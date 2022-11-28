@@ -12,17 +12,6 @@ class EmployeeDetailsPage extends StatefulWidget {
 }
 
 class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
-  // sendSMS() async {
-  //   String message = "This is a test message!";
-  //   List<String> recipents = ["1234567890", "5556787676"];
-
-  //   String _result =
-  //       await sendSMS(message: message, recipients: recipents, sendDirect: true)
-  //           .catchError((onError) {
-  //     print(onError);
-  //   });
-  //   print(_result);
-  // }
 
   void sendingSMS(String msg, List<String> listReceipents) async {
     String sendResult = await sendSMS(message: msg, recipients: listReceipents)

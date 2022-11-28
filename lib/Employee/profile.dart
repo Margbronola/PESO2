@@ -165,6 +165,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Container(
+                                color: Colors.grey.shade200,
+                                padding: const EdgeInsets.all(10),
                                 margin: const EdgeInsets.only(top: 20),
                                 child: MyWidget().text(
                                   label: "Personal Information",
@@ -220,6 +222,40 @@ class _ProfilePageState extends State<ProfilePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
+                                        const Text("Age ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("Age") != null
+                                              ? "${docs.get("Age")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("Civil Status ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("CivilStatus") != null
+                                              ? "${docs.get("CivilStatus")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
                                         const Text("Gender ",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold)),
@@ -254,6 +290,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
+                                        const Text("Religion ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("Religion") != null
+                                              ? "${docs.get("Religion")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
                                         const Text("Desired Position ",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold)),
@@ -270,6 +323,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Container(
+                                color: Colors.grey.shade200,
+                                padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(top: 20),
                                   child: MyWidget().text(
                                     label: "Educational Attainment",
@@ -301,10 +356,98 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ],
                                     ),
                                     const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("School Year",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("ElemSchoolYear") != null
+                                              ? "${docs.get("ElemSchoolYear")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const Divider(color: Colors.grey),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("High School",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                                const SizedBox(width: 10),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("HighSchool") != null
+                                              ? "${docs.get("HighSchool")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("School Year",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("HSSchoolYear") != null
+                                              ? "${docs.get("HSSchoolYear")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const Divider(color: Colors.grey),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("College",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("College") != null
+                                              ? "${docs.get("College")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text("School Year",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        Expanded(
+                                            child: Text(
+                                          docs.get("CollegeSchoolYear") != null
+                                              ? "${docs.get("CollegeSchoolYear")}"
+                                              : "",
+                                          textAlign: TextAlign.end,
+                                        ))
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
                                   ],
                                 ),
                               ),
                               Container(
+                                color: Colors.grey.shade200,
+                                padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(top: 20),
                                   child: MyWidget().text(
                                     label: "Skills",
@@ -323,6 +466,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Container(
+                                color: Colors.grey.shade200,
+                                padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(top: 20),
                                   child: MyWidget().text(
                                     label: "Work Experience",

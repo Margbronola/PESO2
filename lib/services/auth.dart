@@ -66,6 +66,8 @@ class Authentication {
         "phoneNumber": null,
         "skills": null,
         "experience": null,
+          "College": null,
+          "CollegeSchoolYear": null,
       });
       return await creds.user!.getIdToken();
     } catch (e) {

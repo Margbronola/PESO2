@@ -12,7 +12,6 @@ class EmployeeDetailsPage extends StatefulWidget {
 }
 
 class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
-
   void sendingSMS(String msg, List<String> listReceipents) async {
     String sendResult = await sendSMS(message: msg, recipients: listReceipents)
         .catchError((err) {
@@ -81,7 +80,7 @@ class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
                       Text(
                         "${widget.data['firstname']} ${widget.data['lastname']}",
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -122,6 +121,7 @@ class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
                           children: [
                             const Text("Address ",
                                 style: TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(width: 20),
                             Expanded(
                                 child: Text(
                               widget.data["address"] != null
@@ -150,12 +150,42 @@ class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            const Text("Age ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Expanded(
+                                child: Text(
+                              widget.data["Age"] != null
+                                  ? "${widget.data["Age"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             const Text("Gender ",
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Expanded(
                                 child: Text(
                               widget.data["gender"] != null
                                   ? "${widget.data["gender"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Civil Status ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Expanded(
+                                child: Text(
+                              widget.data["CivilStatus"] != null
+                                  ? "${widget.data["CivilStatus"]}"
                                   : "",
                               textAlign: TextAlign.end,
                             ))
@@ -176,6 +206,142 @@ class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
                             ))
                           ],
                         ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Religion ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Expanded(
+                                child: Text(
+                              widget.data["Religion"] != null
+                                  ? "${widget.data["Religion"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: size.width,
+              margin: const EdgeInsets.only(top: 10),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: Colors.white,
+              ),
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Educational Attainment",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Elementary ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(width: 15),
+                            Expanded(
+                                child: Text(
+                              widget.data["Elementary"] != null
+                                  ? "${widget.data["Elementary"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("School Year ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Expanded(
+                                child: Text(
+                              widget.data["ElemSchoolYear"] != null
+                                  ? "${widget.data["ElemSchoolYear"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const Divider(color: Colors.grey),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("High School ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(width: 15),
+                            Expanded(
+                                child: Text(
+                              widget.data["HighSchool"] != null
+                                  ? "${widget.data["HighSchool"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("School Year ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Expanded(
+                                child: Text(
+                              widget.data["HSSchoolYear"] != null
+                                  ? "${widget.data["HSSchoolYear"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const Divider(color: Colors.grey),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("College ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            const SizedBox(width: 15),
+                            Expanded(
+                                child: Text(
+                              widget.data["College"] != null
+                                  ? "${widget.data["College"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("School Year ",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Expanded(
+                                child: Text(
+                              widget.data["CollegeSchoolYear"] != null
+                                  ? "${widget.data["CollegeSchoolYear"]}"
+                                  : "",
+                              textAlign: TextAlign.end,
+                            ))
+                          ],
+                        ),
+                        const SizedBox(height: 10),
                       ],
                     ),
                   ),

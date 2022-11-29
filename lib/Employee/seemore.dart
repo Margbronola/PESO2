@@ -37,7 +37,7 @@ class _SeeMorePageState extends State<SeeMorePage> {
         width: size.width,
         height: size.height,
         color: Colors.white,
-        child: Column(
+        child: ListView(
           children: [
             // Container(
             //   width: size.width,

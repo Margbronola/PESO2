@@ -66,8 +66,16 @@ class Authentication {
         "phoneNumber": null,
         "skills": null,
         "experience": null,
-          "College": null,
-          "CollegeSchoolYear": null,
+        "desiredPosition": null,
+        "Elementary": null,
+        "ElemSchoolYear": null,
+        "HighSchool": null,
+        "HSSchoolYear": null,
+        "College": null,
+        "CollegeSchoolYear": null,
+        "Religion": null,
+        "Age": null,
+        "CivilStatus": null
       });
       return await creds.user!.getIdToken();
     } catch (e) {

@@ -120,23 +120,20 @@ class _CompanyLandingPageState extends State<CompanyLandingPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Container(
-                    // height: 500,
+                  SizedBox(
                     width: size.width,
-                    // color: Colors.red,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 20),
                       child: StreamBuilder(
                         stream: FirebaseFirestore.instance
-                            .collection("Company")
-                            .doc(uid)
-                            .collection("Hiring")
+                            .collection("JobOffer")
+                            .where("uid", isEqualTo: uid)
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData && !snapshot.hasError) {
                             final result = snapshot.data!;
-                            return ListView.builder(
+                            return ListView.separated(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               padding: const EdgeInsets.all(0),
@@ -165,6 +162,8 @@ class _CompanyLandingPageState extends State<CompanyLandingPage> {
                                   ),
                                 );
                               },
+                              separatorBuilder: (context, index) =>
+                                  const Divider(color: Colors.grey),
                             );
                           }
                           return const Text(

@@ -106,7 +106,7 @@ class _CompanyJobDetailsState extends State<CompanyJobDetails> {
                       .collection('Hiring')
                       .doc(widget.hiringid)
                       .delete();
-                          Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 },
                 color: Colors.black,
                 child: const Text(
@@ -131,27 +131,23 @@ class _CompanyJobDetailsState extends State<CompanyJobDetails> {
             SizedBox(
               width: size.width,
               child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection("Applicant")
-                .where("companyid", isEqualTo: uid)
-                //.where("jobId", isEqualTo: widget.hiringid)
-                .snapshots(includeMetadataChanges: true),
-            builder: (context, snapshot) {
-              if (snapshot.hasData && !snapshot.hasError) {
-                final result = snapshot.data!;
-                return ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(0),
-                  itemCount: result.size,
-                  itemBuilder: (BuildContext ctx, int index) {
-                    final docs = result.docs[index];
-                    print("${widget.hiringid}");
+                stream: FirebaseFirestore.instance
+                    .collection("Applicant")
+                    .where("companyid", isEqualTo: uid)
+                    .where("jobId", isEqualTo: widget.hiringid)
+                    .snapshots(includeMetadataChanges: true),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && !snapshot.hasError) {
+                    final result = snapshot.data!;
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(0),
+                      itemCount: result.size,
+                      itemBuilder: (BuildContext ctx, int index) {
+                        final docs = result.docs[index];
 
-                    return Column(
-                      children: [
-                        Text("${docs.data()}"),
-                        GestureDetector(
+                        return GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
@@ -197,7 +193,8 @@ class _CompanyJobDetailsState extends State<CompanyJobDetails> {
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -223,19 +220,17 @@ class _CompanyJobDetailsState extends State<CompanyJobDetails> {
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(),
                     );
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const Divider(),
-                );
-              }
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             )
           ],
         ),

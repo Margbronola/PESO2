@@ -10,52 +10,61 @@ import 'package:image_picker/image_picker.dart';
 import 'package:peso/services/addingUser.dart';
 
 class UpdateEmployeePage extends StatefulWidget {
-  const UpdateEmployeePage({super.key});
+  dynamic data;
+  UpdateEmployeePage({super.key, required this.data});
 
   @override
   State<UpdateEmployeePage> createState() => _UpdateEmployeePageState();
 }
 
 class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
-  late final TextEditingController address;
-  late final TextEditingController birthdate;
-  late final TextEditingController number;
-  late final TextEditingController _skills;
-  late final TextEditingController _experience;
-  late final TextEditingController interestedjob;
-  late final TextEditingController elem;
-  late final TextEditingController elemgrad;
-  late final TextEditingController highschool;
-  late final TextEditingController hsgrad;
-  late final TextEditingController college;
-  late final TextEditingController collegegrad;
-  late final TextEditingController religion;
-  late final TextEditingController age;
-  late final TextEditingController civilstatus;
+  late final TextEditingController address = TextEditingController();
+  late final TextEditingController birthdate = TextEditingController();
+  late final TextEditingController number = TextEditingController();
+  late final TextEditingController _skills = TextEditingController();
+  late final TextEditingController _experience = TextEditingController();
+  late final TextEditingController interestedjob = TextEditingController();
+  late final TextEditingController elem = TextEditingController();
+  late final TextEditingController elemgrad = TextEditingController();
+  late final TextEditingController highschool = TextEditingController();
+  late final TextEditingController hsgrad = TextEditingController();
+  late final TextEditingController college = TextEditingController();
+  late final TextEditingController collegegrad = TextEditingController();
+  late final TextEditingController religion = TextEditingController();
+  late final TextEditingController age = TextEditingController();
+  late final TextEditingController civilstatus = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
-  String gender = "";
-  var imageFile;
   bool isloading = false;
   late String imageUrl;
+  var imageFile;
+  String gender = "";
 
   @override
   void initState() {
-    address = TextEditingController();
-    birthdate = TextEditingController();
-    number = TextEditingController();
-    _skills = TextEditingController();
-    _experience = TextEditingController();
-    interestedjob = TextEditingController();
-    elem = TextEditingController();
-    elemgrad = TextEditingController();
-    highschool = TextEditingController();
-    hsgrad = TextEditingController();
-    college = TextEditingController();
-    collegegrad = TextEditingController();
-    religion = TextEditingController();
-    age = TextEditingController();
-    civilstatus = TextEditingController();
+    address.text = "${widget.data['address'] ?? ""}";
+    birthdate.text = "${widget.data['birthday'] ?? ""}";
+    number.text = "${widget.data['phoneNumber'] ?? ""}";
+    _skills.text = widget.data['skills'] != null
+        ? (widget.data['skills'] as List).isEmpty
+            ? "Skills unspecified"
+            : (widget.data['skills'] as List).join("\n")
+        : "${(widget.data['skills'] ?? "")}";
+    _experience.text = widget.data['experience'] != null
+        ? (widget.data['experience'] as List).isEmpty
+            ? "Experience unspecified"
+            : (widget.data['experience'] as List).join("\n")
+        : "${(widget.data['experience'] ?? "")}";
+    interestedjob.text = "${widget.data['desiredPosition'] ?? ""}";
+    elem.text = "${widget.data['Elementary'] ?? ""}";
+    elemgrad.text = "${widget.data['ElemSchoolYear'] ?? ""}";
+    highschool.text = "${widget.data['HighSchool'] ?? ""}";
+    hsgrad.text = "${widget.data['HSSchoolYear'] ?? ""}";
+    college.text = "${widget.data['College'] ?? ""}";
+    collegegrad.text = "${widget.data['CollegeSchoolYear'] ?? ""}";
+    religion.text = "${widget.data['Religion'] ?? ""}";
+    age.text = "${widget.data['Age'] ?? ""}";
+    civilstatus.text = "${widget.data['CivilStatus'] ?? ""}";
     super.initState();
   }
 
@@ -194,7 +203,9 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                         height: 40,
                         padding: const EdgeInsets.only(left: 10),
                         child: MyWidget().textFormField2(
-                            align: TextAlign.right, controller: age, keyboardType: TextInputType.number),
+                            align: TextAlign.right,
+                            controller: age,
+                            keyboardType: TextInputType.number),
                       )),
                     ],
                   ),
@@ -255,7 +266,9 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                         height: 40,
                         padding: const EdgeInsets.only(left: 10),
                         child: MyWidget().textFormField2(
-                            align: TextAlign.right, controller: number, keyboardType: TextInputType.number),
+                            align: TextAlign.right,
+                            controller: number,
+                            keyboardType: TextInputType.number),
                       )),
                     ],
                   ),
@@ -426,13 +439,20 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                                 setState(() {
                                   isloading = true;
                                 });
-                                if (address.text.isEmpty &&
-                                    birthdate.text.isEmpty &&
-                                    gender == "" &&
-                                    number.text.isEmpty &&
-                                    _skills.text.isEmpty &&
-                                    _experience.text.isEmpty &&
-                                    interestedjob.text.isEmpty && age.text.isEmpty && religion.text.isEmpty && civilstatus.text.isEmpty && elem.text.isEmpty && elemgrad.text.isEmpty && highschool.text.isEmpty && hsgrad.text.isEmpty) {
+                                if (address.text.isEmpty ||
+                                    birthdate.text.isEmpty ||
+                                    gender == "" ||
+                                    number.text.isEmpty ||
+                                    _skills.text.isEmpty ||
+                                    _experience.text.isEmpty ||
+                                    interestedjob.text.isEmpty ||
+                                    age.text.isEmpty ||
+                                    religion.text.isEmpty ||
+                                    civilstatus.text.isEmpty ||
+                                    elem.text.isEmpty ||
+                                    elemgrad.text.isEmpty ||
+                                    highschool.text.isEmpty ||
+                                    hsgrad.text.isEmpty) {
                                   Fluttertoast.showToast(
                                       msg: "Fill all fields");
                                   setState(() {
@@ -440,23 +460,24 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
                                   });
                                 } else {
                                   UpdateData().updateEmployee(
-                                      uid,
-                                      address.text,
-                                      birthdate.text,
-                                      gender,
-                                      number.text,
-                                      interestedjob.text,
-                                      skills,
-                                      experience,
-                                      elem.text,
-                                      elemgrad.text,
-                                      highschool.text,
-                                      hsgrad.text,
-                                      college.text,
-                                      collegegrad.text,
-                                      religion.text,
-                                      age.text,
-                                      civilstatus.text);
+                                    uid,
+                                    address.text,
+                                    birthdate.text,
+                                    gender,
+                                    number.text,
+                                    interestedjob.text,
+                                    skills,
+                                    experience,
+                                    elem.text,
+                                    elemgrad.text,
+                                    highschool.text,
+                                    hsgrad.text,
+                                    college.text,
+                                    collegegrad.text,
+                                    religion.text,
+                                    age.text,
+                                    civilstatus.text,
+                                  );
                                   UpdateData()
                                       .uploadImage(imageFile)
                                       .then((value) async {

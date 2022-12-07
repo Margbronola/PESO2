@@ -50,7 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.black12,
                     margin: const EdgeInsets.only(bottom: 40),
                     alignment: Alignment.center,
-                    child: const Text("LOGO"),
+                    child: Image.asset(
+                      'assets/images/school_logo.jpeg',
+                    ),
+                    // const Text("LOGO"),
                   ),
                   Container(
                       height: 50,

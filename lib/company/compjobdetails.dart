@@ -18,7 +18,6 @@ class _CompanyJobDetailsState extends State<CompanyJobDetails> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    print("${widget.data}");
 
     return Scaffold(
       appBar: AppBar(
@@ -104,6 +103,10 @@ class _CompanyJobDetailsState extends State<CompanyJobDetails> {
                       .collection('Company')
                       .doc(uid)
                       .collection('Hiring')
+                      .doc(widget.hiringid)
+                      .delete();
+                  FirebaseFirestore.instance
+                      .collection('JobOffer')
                       .doc(widget.hiringid)
                       .delete();
                   Navigator.of(context).pop();

@@ -26,7 +26,7 @@ class UpdateData {
     String college,
     String cyg,
     String religion,
-    String age, 
+    String age,
     String civilstatus,
   ) async {
     return await user
@@ -45,9 +45,9 @@ class UpdateData {
           "HSSchoolYear": hsyg,
           "College": college,
           "CollegeSchoolYear": cyg,
-          "Religion" : religion,
-          "Age" : age,
-          "CivilStatus" : civilstatus
+          "Religion": religion,
+          "Age": age,
+          "CivilStatus": civilstatus
         })
         .then((value) => print("data Added"))
         .catchError((error) => print("data couldn't be added."));

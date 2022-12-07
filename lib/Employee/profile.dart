@@ -143,20 +143,25 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                           onPressed: () {
                                             Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                    child:
-                                                        const UpdateEmployeePage(),
-                                                    type: PageTransitionType
-                                                        .fade));
+                                              context,
+                                              PageTransition(
+                                                child: UpdateEmployeePage(
+                                                  data: docs.data(),
+                                                ),
+                                                type: PageTransitionType.fade,
+                                              ),
+                                            );
                                           },
                                           child: const Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 10),
-                                            child: Text("Update",
-                                                style: TextStyle(
-                                                    color: Colors.black45,
-                                                    letterSpacing: 1)),
+                                            child: Text(
+                                              "Update",
+                                              style: TextStyle(
+                                                color: Colors.black45,
+                                                letterSpacing: 1,
+                                              ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -323,8 +328,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Container(
-                                color: Colors.grey.shade200,
-                                padding: const EdgeInsets.all(10),
+                                  color: Colors.grey.shade200,
+                                  padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(top: 20),
                                   child: MyWidget().text(
                                     label: "Educational Attainment",
@@ -380,7 +385,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         const Text("High School",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold)),
-                                                const SizedBox(width: 10),
+                                        const SizedBox(width: 10),
                                         Expanded(
                                             child: Text(
                                           docs.get("HighSchool") != null
@@ -446,8 +451,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Container(
-                                color: Colors.grey.shade200,
-                                padding: const EdgeInsets.all(10),
+                                  color: Colors.grey.shade200,
+                                  padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(top: 20),
                                   child: MyWidget().text(
                                     label: "Skills",
@@ -466,8 +471,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Container(
-                                color: Colors.grey.shade200,
-                                padding: const EdgeInsets.all(10),
+                                  color: Colors.grey.shade200,
+                                  padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(top: 20),
                                   child: MyWidget().text(
                                     label: "Work Experience",

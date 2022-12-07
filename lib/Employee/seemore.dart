@@ -38,6 +38,7 @@ class _SeeMorePageState extends State<SeeMorePage> {
         height: size.height,
         color: Colors.white,
         child: ListView(
+          shrinkWrap: true,
           children: [
             // Container(
             //   width: size.width,
@@ -94,6 +95,7 @@ class _SeeMorePageState extends State<SeeMorePage> {
                 if (snapshot.hasData && !snapshot.hasError) {
                   final result = snapshot.data;
                   return ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: result!.size,
                     padding: const EdgeInsets.symmetric(horizontal: 20),

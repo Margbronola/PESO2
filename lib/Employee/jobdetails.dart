@@ -13,6 +13,8 @@ class JobDetailsPage extends StatefulWidget {
 }
 
 class _JobDetailsPageState extends State<JobDetailsPage> {
+  String label = "APPLY";
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -234,38 +236,43 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey.shade700),
-                    child: const Text(
-                      "APPLY",
-                      style: TextStyle(
+                    child: Text(
+                      label,
+                      style: const TextStyle(
                         letterSpacing: 2,
                         fontSize: 18,
                       ),
                     ),
                     onPressed: () {
-                      Applicant().apply(
-                        widget.data['uid'],
-                        result.get("firstname"),
-                        result.get("lastname"),
-                        result.get("email"),
-                        result.get("image"),
-                        result.get("address"),
-                        result.get("phoneNumber"),
-                        result.get("gender"),
-                        result.get("birthday"),
-                        widget.jobId,
-                        result.get("skills"),
-                        result.get("experience"),
-                        result.get("desiredPosition"),
-                        result.get("Elementary"),
-                        result.get("ElemSchoolYear"),
-                        result.get("HighSchool"),
-                        result.get("HSSchoolYear"),
-                        result.get("College") ?? null,
-                        result.get("CollegeSchoolYear") ?? null,
-                        result.get("Religion"),
-                        result.get("Age"),
-                        result.get("CivilStatus"),
-                      );
+                      label == "APPLY"
+                          ? Applicant().apply(
+                              widget.data['uid'],
+                              result.get("firstname"),
+                              result.get("lastname"),
+                              result.get("email"),
+                              result.get("image"),
+                              result.get("address"),
+                              result.get("phoneNumber"),
+                              result.get("gender"),
+                              result.get("birthday"),
+                              widget.jobId,
+                              result.get("skills"),
+                              result.get("experience"),
+                              result.get("desiredPosition"),
+                              result.get("Elementary"),
+                              result.get("ElemSchoolYear"),
+                              result.get("HighSchool"),
+                              result.get("HSSchoolYear"),
+                              result.get("College") ?? null,
+                              result.get("CollegeSchoolYear") ?? null,
+                              result.get("Religion"),
+                              result.get("Age"),
+                              result.get("CivilStatus"),
+                            )
+                          : "";
+                      setState(() {
+                        label = "DONE";
+                      });
                     },
                   ),
                 );

@@ -10,16 +10,16 @@ import 'package:peso/global/widget.dart';
 import 'package:peso/services/addingUser.dart';
 
 class UpdateCompanyPage extends StatefulWidget {
-  const UpdateCompanyPage({super.key});
+  dynamic data;
+  UpdateCompanyPage({super.key, required this.data});
 
   @override
   State<UpdateCompanyPage> createState() => _UpdateCompanyPageState();
 }
 
 class _UpdateCompanyPageState extends State<UpdateCompanyPage> {
-  late final TextEditingController address;
-  late final TextEditingController telNo;
-  late final TextEditingController map;
+  late final TextEditingController address = TextEditingController();
+  late final TextEditingController telNo = TextEditingController();
   bool isloading = false;
   final ImagePicker _picker = ImagePicker();
   var mapFile;
@@ -27,9 +27,8 @@ class _UpdateCompanyPageState extends State<UpdateCompanyPage> {
 
   @override
   void initState() {
-    address = TextEditingController();
-    map = TextEditingController();
-    telNo = TextEditingController();
+    address.text = "${widget.data['address'] ?? ""}";
+    telNo.text = "${widget.data['Telephone'] ?? ""}";
   }
 
   @override
@@ -170,9 +169,7 @@ class _UpdateCompanyPageState extends State<UpdateCompanyPage> {
                               setState(() {
                                 isloading = true;
                               });
-                              if (address.text.isEmpty &&
-                                  telNo.text.isEmpty &&
-                                  map.text.isEmpty) {
+                              if (address.text.isEmpty || telNo.text.isEmpty) {
                                 Fluttertoast.showToast(msg: "Fill all fields");
                                 setState(() {
                                   isloading = false;

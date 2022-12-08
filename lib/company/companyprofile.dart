@@ -140,20 +140,25 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                         ),
                                         onPressed: () {
                                           Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                  child:
-                                                      const UpdateCompanyPage(),
-                                                  type:
-                                                      PageTransitionType.fade));
+                                            context,
+                                            PageTransition(
+                                              child: UpdateCompanyPage(
+                                                data: docs.data(),
+                                              ),
+                                              type: PageTransitionType.fade,
+                                            ),
+                                          );
                                         },
                                         child: const Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          child: Text("Update",
-                                              style: TextStyle(
-                                                  color: Colors.black45,
-                                                  letterSpacing: 1)),
+                                          child: Text(
+                                            "Update",
+                                            style: TextStyle(
+                                              color: Colors.black45,
+                                              letterSpacing: 1,
+                                            ),
+                                          ),
                                         ),
                                       )
                                     ],
@@ -177,16 +182,20 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text("Address ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
+                                  const Text(
+                                    "Address ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   Expanded(
-                                      child: Text(
-                                    docs.get("address") != null
-                                        ? "${docs.get("address")}"
-                                        : "",
-                                    textAlign: TextAlign.end,
-                                  ))
+                                    child: Text(
+                                      docs.get("address") != null
+                                          ? "${docs.get("address")}"
+                                          : "",
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
@@ -198,9 +207,12 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Expanded(
-                                    child: Text("Telephone / Phone Number  ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
+                                    child: Text(
+                                      "Telephone / Phone Number  ",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                   Expanded(
                                       child: Text(

@@ -53,7 +53,7 @@ class _UpdateEmployeePageState extends State<UpdateEmployeePage> {
     _experience.text = widget.data['experience'] != null
         ? (widget.data['experience'] as List).isEmpty
             ? "Experience unspecified"
-            : (widget.data['experience'] as List).join("\n")
+            : (widget.data['experience'] as List).join(" \n")
         : "${(widget.data['experience'] ?? "")}";
     interestedjob.text = "${widget.data['desiredPosition'] ?? ""}";
     elem.text = "${widget.data['Elementary'] ?? ""}";
